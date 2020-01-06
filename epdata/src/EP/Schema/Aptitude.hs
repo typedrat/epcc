@@ -1,10 +1,8 @@
 {-# LANGUAGE TemplateHaskell #-}
-module EP.Schema.Aptitude ( Aptitude(..), AptitudeSet(..) ) where
+module EP.Schema.Aptitude ( Aptitude(..), AptitudeSet(..), aptitude ) where
 
 import Control.Applicative
-import Control.Lens.At
-import Control.Lens.Combinators ( view )
-import Control.Lens.TH
+import Control.Lens            hiding ( (.=) )
 import Data.Aeson.Types
 import qualified Data.Text      as T
 import GHC.Generics             ( Generic )
@@ -57,17 +55,15 @@ instance Monoid AptitudeSet where
 
 makeLenses ''AptitudeSet
 
-type instance Index AptitudeSet = Aptitude
-type instance IxValue AptitudeSet = Word
-
-instance Ixed AptitudeSet where
-    ix COG = cogApt
-    ix COO = cooApt
-    ix INT = intApt
-    ix REF = refApt
-    ix SAV = savApt
-    ix SOM = somApt
-    ix WIL = wilApt
+aptitude :: Aptitude -> Lens' AptitudeSet Word
+aptitude COG = cogApt
+aptitude COO = cooApt
+aptitude INT = intApt
+aptitude REF = refApt
+aptitude SAV = savApt
+aptitude SOM = somApt
+aptitude WIL = wilApt
+{-# INLINE aptitude #-}
 
 instance FromJSON AptitudeSet where
     parseJSON = withObject "AptitudeSet" $ \o -> AptitudeSet 
