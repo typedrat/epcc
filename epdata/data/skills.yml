@@ -1,0 +1,498 @@
+- name: Profession
+  description: |
+    Profession skills indicate training in a profession practiced in Eclipse Phase. This can indicate either formal training or informal, on-the-job type training and includes both legal and extralegal trades.
+
+    Use Profession to perform work-related tasks for a specific trade (i.e. mining, balancing accounts, designing a security system, etc.) or to reference specialized knowledge that someone trained in that profession might have.
+
+    Sample Fields: Accounting, Appraisal, Asteroid Prospecting, Banking, Cool Hunting, Con Schemes, Distribution, Forensics, Lab Technician, Mining, Police Procedures, Psychotherapy, Security Ops, Smuggling Tricks, Social Engineering, Squad Tactics, Viral Marketing, XP Production
+
+    Specializations: As appropriate to the field
+  aptitude: COG
+  category: Knowledge
+  defaultable: false
+  field_skill: true
+- name: Pilot
+  description: |
+    Pilot is your skill at driving/flying a vehicle of a particular type.
+    
+    You use Pilot skill whenever you need to maneuver, control, or avoid crashing a vehicle, whether you are in the pilot seat, remote controlling a robot, or directly jamming a vehicle with VR. Each vehicle has a Handling modifier that applies to this test, along with other situational modifiers (see Bots, Synthmorphs, and Vehicles, p. 195).
+
+    Sample Fields: Aircraft, Anthroform (walkers), Exotic Vehicle, Groundcraft (wheeled or tracked), Spacecraft, Watercraft
+
+    Specializations: As appropriate to the field
+  aptitude: REF
+  category: Active
+  field_skill: true
+- name: Animal Handling
+  description: |
+    Skilled animal handlers are able to train and control a wide variety of natural and transgenic animals, including partial uplifts. Though many animal species went extinct during the Fall, a few "ark" and zoo habitats keep some species alive, and many others can be resurrected from genetic samples. Exotic animals are considered a sign of prestige among the hypercorp elites, and guard animals are occasionally used to protect high-security installations. Likewise, many habitats and settlements employ small armies of partially uplifted, genetically modified, and behavior-controlled creatures for sanitation or other purposes. Many new and strange breeds of animal are created daily to serve a variety of roles.
+
+    Animal Handling is used whenever you are trying to manipulate an animal, whether your intent is to calm it down, keep it from attacking, intimidate it, acquire its trust, or goad it into attacking. Your Margin of Success determines how effective you are at convincing the creature. At the gamemaster's discretion, modifiers may be applied to the test. Likewise, winning an animal over may sometimes take time, and so could be handled as a Task Action with a timeframe of five minutes or more.
+
+    Specializations: Per animal species (dogs, horses, smart rats, etc.)
+  aptitude: SAV
+  category: Active
+- name: Networking
+  description: |
+    Networking is your skill at working your contacts, trading favors, and keeping your finger on the pulse of a particular faction or cultural grouping.
+
+    Use Networking to gather information or call on services using your Reputation (see Reputation and Social Networks, p. 285).
+
+    Sample Fields: Autonomists (@-rep), Criminals (g-rep), Ecologists (e-rep), Firewall (i-rep), Hypercorps (c-rep), Media (f-rep), Scientists (r-rep). At the gamemaster discretion, this list can be expanded to other (sub)cultural groupings.</p2>
+
+    Specializations: As appropriate to each field
+  aptitude: SAV
+  category: Active
+- name: Beam Weapons
+  description: |
+    The Beam Weapons skill covers the usage and maintenance of standard coherent beam energy weapons such as lasers, particle beam weapons, plasma rifles, and microwave weapons. 
+
+    A player uses their Beam Weapons skill whenever attacking with a beam weapon in combat. Beam Weapons may also be used for tests involving maintenance of the weapon, but not for repairing or modifying the weapon (that would be Hardware: Armorer skill).
+
+    Specializations: Lasers, Microwave Weapons, Particle Beam Weapons, Plasma Rifles
+  aptitude: COO
+  category: Active
+- name: Blades
+  description: |
+    The Blades skill covers the usage and maintenance of standard bladed weapons.
+
+    A player uses their Blades skill whenever attacking with a blade weapon in melee combat. Blades may also be used for tests involving maintenance of the weapon, but not for repairing or modifying the weapon (that would be Hardware: Armorer skill). This skill is used for blade weapons implanted in the body at the end of an appendage (hands, forearms, feet, octomorph arms, etc.), but the Exotic Melee Weapon skill is used for blades implanted in other parts of the body.
+
+    Specializations: Axes, Implant Blades, Knives, Swords
+  aptitude: SOM
+  category: Active
+- name: Interest
+  description: |
+    Interest includes just about any topic that captures your attention that isnt covered by another skill. This includes hobbies, obsessions,causes, pastimes, and other recreational pursuits.
+
+    Use the Interest skill whenever you need to recall or use knowledge related to theparticular interest in question.<h2>Field Examples</h2>Ancient Sports, Celebrity Gossip,Conspiracies, Factor Trivia, Gambling, Hypercorp Politics, Lunar Habitats, Martian Beers, Old Earth Nation-States, Reclaimer Blogs, Science Fiction, Scum Drug Dealers, Spaceship Models, Triad Economics, Underground XP
+
+    Specializations: As appropriate to the field
+  aptitude: COG
+  category: Knowledge
+  defaultable: false
+  field_skill: true
+- name: Climbing
+  description: |
+    Climbing is the skill of ascending and descending sheer surfaces with or without the aid of specialized equipment.
+
+    This skill is used whenever a character wishes to scale a climbable surface. For heights greater than one story, climbing is handled as a Task Action with a timeframe equivalent to one meter per Combat Turn. For rappelling, the timeframe for descent is 50 meters per Action Turn. Climbing gear provides appropriate modifiers.
+
+    Specializations: Assisted, Freehand, Rappelling
+  aptitude: SOM
+  category: Active
+- name: Clubs
+  description: |
+    The Clubs skill covers the usage and maintenance of standard blunt melee weapons such as batons or sticks.
+
+    When you use it: Players use their Clubs skill whenever they want to attack with a blunt weapon in melee combat. The Clubs skill may also be used for tests involving maintenance of the weapon, but not for repairing or modifying the weapon (that would be Hardware: Armorer skill).
+
+    Specializations: Batons, Hammers, Staffs
+  aptitude: SOM
+  category: Active
+- name: Control
+  description: |
+    Control is the use of psi to manipulate individuals or actively penetrate their mental processes. This skill is only available to characters with the Psi trait.
+
+    Use Control when taking a psionic tour through a foreign ego--messing around included. See Mind Hacks.
+
+    Specializations: By sleight
+  aptitude: WIL
+  category: Active
+  defaultable: false
+- name: Networking
+  description: |
+    Networking is your skill at working your contacts, trading favors, and keeping your finger on the pulse of a particular faction or cultural grouping.
+
+    Use Networking to gather information or call on services using your Reputation (see Reputation and Social Networks, p. 285).
+
+    Sample Fields: Autonomists (@-rep), Criminals (g-rep), Ecologists (e-rep), Firewall (i-rep), Hypercorps (c-rep), Media (f-rep), Scientists (r-rep). At the gamemaster discretion, this list can be expanded to other (sub)cultural groupings.</p2>
+
+    Specializations: As appropriate to each field
+  aptitude: SAV
+  category: Active
+- name: Deception
+  description: |
+    Deception is your ability to act, bluff, con, fast talk, lie, misrepresent, and pretend. Accomplished users of deception are able to convince anyone of nearly anything. This skill does not include using a physical disguise to appear to be another person (the Impersonation skill covers that area).
+
+    Use this skill whenever you want to deceive someone with words or gestures. A successful skill test means that you have passed off your deception convincingly. At the gamemaster's discretion, someone who is actively alert for signs of deception may make an Opposed Test using the Kinesics skill.
+
+    Specializations: Acting, Bluffing, Fast Talk
+  aptitude: SAV
+  category: Active
+- name: Demolitions
+  description: |
+    Demolitions covers the use of controlled explosives.
+
+    Use it when making, placing, and disarming explosives and explosive devices.
+
+    Specializations: Commercial Explosives, Disarming, Improvised ExplosivesThe most common use of the Demolitions skill is the placement, disarming, or manufacture of explosive devices, such as superthermite charges or grenades.<h3>Placing Explosives</h3>A skilled demolitionist can place charges in a manner that will boost their effect. They can identify structural vulnerabilities and weak points and focus a blast in these areas. They can determine how to blast open a safe without destroying the contents. They can focus the force of an explosion in a particular direction, increasing the directed force while minimizing splash effects.Each of these scenarios calls for a successful Demolitions Test. The exact result is determined by the gamemaster according to the specific scenario. For example, using the examples above, targeting a weak point could double the damage inflicted on that structure. Shaping the charge to direct the force can triple the damage in that direction, as noted in the superthermite description. An Excellent Success is likely to increase an explosive's damage by +5, whereas a critical success would allow the blast to ignore armor.<h3>Disarming</h3>Disarming an explosive device is handled as an Opposed Test between the Demolitions skills of the disarmer and the character who set the bomb.<h3>Making Explosives</h3>A character trained in Demolitions can make explosives from raw materials. These materials can be gathered the traditional way or they can be manufactured using a nanofabricator. Even nanofabbers with restricted settings to prevent explosives creation can be used, as explosives can be constructed from all manner of mundane chemicals and materials. The timeframe for making explosives is 1 hour per 1d10 points of damage the explosive will inflict. If a critical failure is rolled, the demolitionist may accidentally blow himself up, or the charge may be extremely weaker or more potent than expected (whichever is more likely to be disastrous).
+  aptitude: COG
+  category: Active
+  defaultable: false
+- name: Disguise
+  description: |
+    Disguise is the art of physically altering your appearance so that you look like someone else. This includes both the use of props (wigs, contacts, skin pigments) and the altering of subtle physical characteristics (gait, posture, poise).
+
+    Use Disguise to fool someone into thinking you're someone you're not. This can be used to hide your identity or to make yourself look like someone in particular. When used against someone who knows your true look or the appearance of the person you are imitating, this is handled as an Opposed Test against Perception or Investigation.
+
+    Specializations: Cosmetic, Theatrical
+  aptitude: INT
+  category: Active
+- name: Networking
+  description: |
+    Networking is your skill at working your contacts, trading favors, and keeping your finger on the pulse of a particular faction or cultural grouping.
+
+    Use Networking to gather information or call on services using your Reputation (see Reputation and Social Networks, p. 285).
+
+    Sample Fields: Autonomists (@-rep), Criminals (g-rep), Ecologists (e-rep), Firewall (i-rep), Hypercorps (c-rep), Media (f-rep), Scientists (r-rep). At the gamemaster discretion, this list can be expanded to other (sub)cultural groupings.</p2>
+
+    Specializations: As appropriate to each field
+  aptitude: SAV
+  category: Active
+- name: Hardware
+  description: |
+    This skill encompasses the ability to build, repair, physically hack, and upgrade equipment of a specific type.
+
+    Hardware is primarily used to repair devices, vehicles, habitat systems, or synthetic morphs. See Building, Repairing, and Modifying below.
+
+    Sample Fields: Aerospace (all air and space vehicles),Armorer (armor and weapons), Electronics (all computerized devices), Groundcraft, Implants, Industrial (habitat, factory, and life support systems), Nautical (watercraft and submarines), Robotics (synthetic morphs)
+
+    Specializations: As appropriate to the field
+  aptitude: COG
+  category: Active
+- name: Networking
+  description: |
+    Networking is your skill at working your contacts, trading favors, and keeping your finger on the pulse of a particular faction or cultural grouping.
+
+    Use Networking to gather information or call on services using your Reputation (see Reputation and Social Networks, p. 285).
+
+    Sample Fields: Autonomists (@-rep), Criminals (g-rep), Ecologists (e-rep), Firewall (i-rep), Hypercorps (c-rep), Media (f-rep), Scientists (r-rep). At the gamemaster discretion, this list can be expanded to other (sub)cultural groupings.</p2>
+
+    Specializations: As appropriate to each field
+  aptitude: SAV
+  category: Active
+- name: Flight
+  description: |
+    Flight is the skill of using your body to fly. This skill is used when sleeved in or jamming a winged or otherwise flight-capable morph (manual and remote-control flight are handled using Pilot skill).
+
+    Use this skill whenever you need to make an aerial maneuver, land in difficult conditions, maintain your course in steep winds, or otherwise keep from crashing or falling.
+
+    Specializations: Diving, Landing, Takeoff, specific maneuvers
+  aptitude: SOM
+  category: Active
+- name: Fray
+  description: |
+    Fray is the ability to get out of the way of incoming attacks, debris, or inconvenient passers-by. Characters that have a high Fray score are able to react quicker than others when dodging or maneuvering.
+
+    Whenever a character is physically attacked by an opponent in melee combat, roll Fray to avoid getting hit. Fray may also be used to dodge other events that mayharm the character, such as avoiding a charging vehicle or jumping out of the way of a collapsing stack of crates.
+
+    Specializations: Blades, Clubs, Full Defense, Unarmed
+  aptitude: REF
+  category: Active
+- name: Free Fall
+  description: |
+    Free Fall is about moving in free-fall and microgravity environments.
+
+    Use whenever you need to maneuver in a zero-g situation, such as propelling yourself across a large open space or making sure you don't accidentally send yourself spinning off into space. Free Fall is also used when moving with spacesuit maneuvering jets and when parachuting. 
+
+    Specializations: Microgravity, Parachuting, Vacsuits
+  aptitude: REF
+  category: Active
+- name: Freerunning
+  description: |
+    Freerunning is part running, part gymnastics. It is about moving fast, maneuvering over/under/around/through obstacles, and placing your body where it needs to go. Freerunning/parkour is a popular pastime in habitats where open space is limited.
+
+    Use Freerunning whenever you need to overcome an obstacle via movement, such as hurdling a railing, rolling across the hood of a car, jumping across a pit, or swinging around a pole. Freerunning is also used for sprinting  and full defense against attacks.
+
+    Specializations: Balance, Gymnastics, Jumping, Running
+  aptitude: SOM
+  category: Active
+- name: Pilot
+  description: |
+    Pilot is your skill at driving/flying a vehicle of a particular type.When you use it: You use Pilot skill whenever you need to maneuver, control, or avoid crashing a vehicle, whether you are in the pilot seat, remote controlling a robot, or directly jamming a vehicle with VR. Each vehicle has a Handling modifier that applies to this test, along with other situational modifiers (see Bots, Synthmorphs, and Vehicles, p. 195).
+
+    Sample Fields: Aircraft, Anthroform (walkers), ExoticVehicle, Groundcraft (wheeled or tracked), Spacecraft, Watercraft
+
+    Specializations: As appropriate to the field
+  aptitude: REF
+  category: Active
+- name: Gunnery
+  description: |
+    Gunnery skill covers the use and maintenance of large, vehicular, or non-portable weapons systems. Firing these weapons is more like playing a video game than firing a gun.
+
+    Use Gunnery when attacking with a vehicle-mounted weapon or weapon emplacement in ranged combat.
+
+    Specializations: Artillery, Missiles
+  aptitude: INT
+  category: Active
+- name: Networking
+  description: |
+    Networking is your skill at working your contacts, trading favors, and keeping your finger on the pulse of a particular faction or cultural grouping.
+
+    Use Networking to gather information or call on services using your Reputation (see Reputation and Social Networks, p. 285).
+
+    Sample Fields: Autonomists (@-rep), Criminals (g-rep), Ecologists (e-rep), Firewall (i-rep), Hypercorps (c-rep), Media (f-rep), Scientists (r-rep). At the gamemaster discretion, this list can be expanded to other (sub)cultural groupings.</p2>
+
+    Specializations: As appropriate to each field
+  aptitude: SAV
+  category: Active
+- name: Impersonation
+  description: |
+    Impersonation is the skill of trying to pass yourself off as someone else in social situations, including virtual ones. This includes copying mannerisms and speech patterns and using accumulated information to convince others that you are that person. In a universe where appearance is highly variable, the question of identity is largely one of both trust and picking up on behavioral quirks and verbal cues to recognize a given individual.
+
+    Sometimes it's fun to pretend you're someone else, and sometimes it's profitable or lifesaving. Use this skill whenever you attempt to convince someone that you are actually someone else through some sort of social or online interaction. Forks use this skill when passing themselves off as their alpha ego. Impersonate is handled as an Opposed Test against the Kinesics skill. 
+
+    Specializations: Avatar, Face-to-Face, Verbal
+  aptitude: SAV
+  category: Active
+- name: Infiltration
+  description: |
+    The art of escaping detection.
+
+    Use Infiltration whenever you need to physically hide or move with stealth to avoid someone sensing you, whether you are hiding behind a tree, sneaking past a guard, or blending into a crowd. Infiltration can also be used to follow people (shadowing) without them detecting you. Infiltration is an Opposed Test against the Perception of whomever you are hiding from. The gamemaster may wish to roll such tests in secret so the player does not know whether they have succeeded or failed.
+
+    Specializations: Blending In, Hiding, Shadowing, Sneaking
+  aptitude: COO
+  category: Active
+- name: Infosec
+  description: |
+    Infosec is short for "information security." It encompasses training in electronic intrusion and counterintrusion techniques as well as encryption and decryption.
+
+    Infosec is used both for hacking into electronic devices and mesh networks and for protecting them.
+
+    Specializations: Brute-Force Hacking, Decryption, Probing, Security, Sniffing, Spoofing
+  aptitude: COG
+  category: Active
+  defaultable: false
+- name: Interfacing
+  description: |
+    Interfacing is about using computerized electronic devices and software.
+
+    Use Interfacing to understand an electronic device you are not familiar with, use a program according to its normal operating parameters, manipulate electronic files of various types (including images, video, XP, and audio files), scan for wireless devices, and otherwise interact with and command your ecto, muse, and other computerized devices. Some Interfacing actions may be Task Actions with a timeframe determined by the gamemaster.
+
+    Specializations: Forgery, Scanning, Stealthing, by program
+  aptitude: COG
+  category: Active
+- name: Intimidation
+  description: |
+    Intimidation is convincing someone to do what you want based on direct threats (implied or actual) or sheer force of personality.
+
+    Use Intimidation to scare someone into submission, browbeat them into getting your way, command them to follow your orders, or berate them into giving up information. Influence is handled as an Opposed Test, pitted against the target's WIL + WIL + SAV.
+
+    Specializations: Interrogation, Physical, Verbal
+  aptitude: SAV
+  category: Active
+- name: Investigation
+  description: |
+    Investigation is the art of analyzing evidence, piecing together clues, solving mysteries, and making logical deductions from groups of facts. Investigation differs from Perception in that it is the conscious search for clues or pieces of a puzzle.
+
+    Use Investigation to draw conclusions from assorted details. For example, Investigation could be used to determine the likely sequence of events at a crime scene, determine a possible social connection between two people, or deduce how an enemy made their escape. Investigation is a great way to provide clues to players, especially when the subject matter is something their character might know well but the player does not.
+
+    Specializations: Evidence Analysis, Logical Deduc-tions, Physical Investigation, Physical Tracking
+  aptitude: INT
+  category: Active
+- name: Kinesics
+  description: |
+    Kinesics is the art of empathy and nonvocal communication.
+
+    Use Kinesics to read body language, tells, social cues, and other subconscious indicators. It can also be used to emote more effectively. Kinesics is used defensively whenever someone is trying to deceive you; make an Opposed Test against that person's Deception or Impersonation skill. Though synthetic morphs are also designed to emote, reading them is not as easy. Apply a -30 modifier when judging a synthetic morph inhabited by a character or AGI. Likewise, standard AIs are also difficult to read; apply a -60 modifier when judging a synthetic morph or pod operated by an AI. 
+
+    Specializations: Judge Intent, Nonvocal Communication
+  aptitude: SAV
+  category: Active
+- name: Kinetic Weapons
+  description: |
+    Kinetic Weapons covers the use and maintenance of standard kinetic projectile weapons like firearms and railguns.
+
+    Use this skill whenever attacking with a kinetic weapon in ranged combat.
+
+    Specializations: Assault Rifles, Machine Guns, Pistols, Sniper Rifles, Submachine Guns
+  aptitude: COO
+  category: Active
+- name: Networking
+  description: |
+    Networking is your skill at working your contacts, trading favors, and keeping your finger on the pulse of a particular faction or cultural grouping.
+
+    Use Networking to gather information or call on services using your Reputation (see Reputation and Social Networks, p. 285).
+
+    Sample Fields: Autonomists (@-rep), Criminals (g-rep), Ecologists (e-rep), Firewall (i-rep), Hypercorps (c-rep), Media (f-rep), Scientists (r-rep). At the gamemaster discretion, this list can be expanded to other (sub)cultural groupings.</p2>
+
+    Specializations: As appropriate to each field
+  aptitude: SAV
+  category: Active
+- name: Navigation
+  description: |
+    Navigation is the art of finding your way, whether using AR maps, a compass, the stars, or an astrogation AI.
+
+    Use Navigation whenever you need to plot out a course, determine a direction, or otherwise keep from getting lost.
+
+    Specializations: Astrogation, Map Making, Map Reading
+  aptitude: INT
+  category: Active
+- name: Palming
+  description: |
+    Palming is the skill of handling items quickly and nimbly without others noticing. Palming is not only about dexterous manipulation of objects but also relies heavily on obfuscation, timing, and misdirection.
+
+    Use Palming any time you are trying to conceal an item on your person, shoplift, pick a pocket, surreptitiously discard something, or perform a magic trick. Palming is an Opposed Test against the Perception of any onlookers. The gamemaster may wish to make this roll secretly.
+
+    Specializations: Pickpocketing, Shoplifting, Tricks
+  aptitude: COO
+  category: Active
+- name: Perception
+  description: |
+    Perception is the use of your physical senses (including cybernetic) and awareness of the physical world around you. Perception differs from Investigation in that it is noticing things by chance, rather than actively searching for something.
+
+    Use Perception whenever you want to take a detailed account of your surroundings. Perception can also be considered an Automatic Action and so the gamemaster may call for a Perception Test to determine if you notice something; it is recommended that such tests be rolled secretly by the gamemaster. Perception is also used as an Opposed Test whenever someone around you is trying to be sneaky with Infiltration or Palming.
+
+    Specializations: Aural, Olfactory, Tactile, Taste, Visual
+  aptitude: INT
+  category: Active
+- name: Persuasion
+  description: |
+    Persuasion is the art of convincing someone to do what you want through the use of words and gestures. This does not include persuasion through threats or force (that is covered by Intimidation) or by lying (covered by Deception).
+
+    Use Persuasion any time you are trying to bargain with, convince, or manipulate someone. This can include motivating your subordinates or peers to take action, seducing a companion, winning a political debate, or negotiating a contract, among other things. Persuasion is handled as an Opposed Test against the target's WIL + WIL + SAV when one person is simply trying to win over another. If both parties are trying to convince each other, make it an Opposed Test between Persuasion skills. 
+
+    Specializations: Diplomacy, Morale Boosting, Negotiating, Seduction
+  aptitude: SAV
+  category: Active
+- name: Programming
+  description: |
+    Programming is your talent at writing and modifying software code.
+
+    Use Programming to write new programs, modify or patch existing software, break copy protection, find or introduce exploitable flaws, write viruses or worms, design virtual settings, and so on. Programming is also applied when using nanofabrication devices.
+
+    Specializations: AI Code, Malware, Nanofabrication, Piracy, Simulspace Code
+  aptitude: COG
+  category: Active
+  defaultable: false
+- name: Protocol
+  description: |
+    Protocol is the art of making a good impression in social settings. This includes keeping up with the latest memes, trends, gossip, interests and habits of various (sub)cultural groups.
+
+    Use Protocol whenever you need to choose your words carefully, determine who is the appropriate person to speak to, impress someone with your grasp of customs, or otherwise fit into a specific social/cultural grouping. Part etiquette, part streetwise, Protocol allows you to navigate treacherous social waters and put people at ease. If the character is dealing with a suspicious or hostile audience, make this an Opposed Test against the target's WIL + WIL+ SAV.
+
+    Specializations: Anarchist, Brinker, Criminal, Factor, Hypercorp, Infomorph, Mercurial, Reclaimer, Preservationist, Scum, Ultimate
+  aptitude: SAV
+  category: Active
+- name: Psi Assault
+  description: |
+    Psi Assault is the skill of damaging another ego's mind. It can only be purchased by characters with the Psi trait.<h2>What it does</h2>Use Psi Assault when attacking another ego's mind in psi combat.
+
+    Specializations: By sleight 
+  aptitude: WIL
+  category: Active
+  defaultable: false
+- name: Academics
+  description: |
+    Academics covers any sort of specialized non-applied knowledge you can only get through intensive education. Most theoretical and applied sciences, social sciences, transhumanities, etc. are covered by this skill. Most of the other skills listed in this chapter could also be taken as an Academics field, reflecting a working theoretical knowledge of the skill,for example, Academics: Armorer or Academics: Interrogation.
+    
+    Academics is used when a character wishes to call upon a specific body of knowledge. For example, Academics: Chemistry could be used to identify a particular substance, understand an unusual chemical reaction, or determine what elements are needed to nanofabricate something that requires exotic materials. At the gamemaster discretion, some Academics-related tests might not be defaultable, given that only someone who has been educated in that subject is likely to be able to tackle it.
+    
+    Sample Fields: Archeology, Astrobiology, Astronomy, Astrophysics, Astrosociology, Biochemistry, Biology, Botany, Computer Science,Cryptography, Economics, Engineering, Genetics, Geology, Linguistics, Mathematics, Memetics, Nanotechnology, Old Earth History, Physics, Political Science, Psychology, Sociology, Xeno-archeology, Xenolinguistics, Zoology
+
+    Specializations: As appropriate to the field
+  aptitude: COG
+  category: Knowledge
+  defaultable: false
+- name: Psychosurgery
+  description: |
+    Psychosurgery is the use of machine-aided psychological techniques to repair, damage, or manipulate the psyche.
+
+    Use Psychosurgery to attempt the tricky process of editing someone's mind. Psychosurgery can be used beneficially to help patients who remember their deaths, feel disconnected after remorphing, or have experienced other sorts of mental traumas. This skill may also be used to interrogate, torture, or otherwise mess with captive minds in a VR environment.
+
+    Specializations: Memory Manipulation, PersonalityEditing, Psychotherapy
+  aptitude: INT
+  category: Active
+- name: Research
+  description: |
+    Research is the skill for looking up information on the mesh: searching, sifting, mining, and interpreting data. This includes knowing where to look, what links to follow, and how to optimize your queries.
+
+    Use the Research skill whenever you need to look up the answer to a question, find databases, search archives, or track down anything online. Research is typically a Task Action with the timeframe and difficulty modifier determined by the gamemaster. 
+    
+    Specializations: Tracking, by information type
+  aptitude: COG
+  category: Active
+- name: Networking
+  description: |
+    Networking is your skill at working your contacts, trading favors, and keeping your finger on the pulse of a particular faction or cultural grouping.
+
+    Use Networking to gather information or call on services using your Reputation (see Reputation and Social Networks, p. 285).
+
+    Sample Fields: Autonomists (@-rep), Criminals (g-rep), Ecologists (e-rep), Firewall (i-rep), Hypercorps (c-rep), Media (f-rep), Scientists (r-rep). At the gamemaster discretion, this list can be expanded to other (sub)cultural groupings.</p2>
+
+    Specializations: As appropriate to each field
+  aptitude: SAV
+  category: Active
+- name: Scrounging
+  description: |
+    Scrounging is your ability to find things, particularly things of use or value that are concealed, buried, or hard to find. This includes knowing where to look and what to look for. Scrounging differs from both Perception and Investigation in that it is about finding items hidden among others, and in most cases about finding something in particular (food, valuables, etc.).
+
+    Use Scrounging to dumpster-dive a meal, search ruins for relics, find bargains at a bazaar, forage berries in the forest, locate a spacesuit in an abandoned ship, etc. Scrounging is typically handled as a Task Action with a timeframe and difficulty modifier determined by the gamemaster.
+    
+    Specializations: Bazaars, Forests, Habitats, Ruins
+  aptitude: INT
+  category: Active
+- name: Seeker Weapons
+  description: |
+    Seeker Weapons covers the use and maintenance of seeker launchers and seeker missiles.
+
+    Use this skill when attacking with a seeker in ranged combat.
+
+    Specializations: Armband, Pistol, Rifle, Underbarrel
+  aptitude: COO
+  category: Active
+- name: Sense
+  description: |
+    Sense is the use of psi to scan egos. Only characters with the Psi trait may purchase this skill.<h2>What it does</h2>see Psi, p. 220.
+    
+    Specializations: By sleight
+  aptitude: INT
+  category: Active
+  defaultable: false
+- name: Pilot
+  description: |
+    Pilot is your skill at driving/flying a vehicle of a particular type.When you use it: You use Pilot skill whenever you need to maneuver, control, or avoid crashing a vehicle, whether you are in the pilot seat, remote controlling a robot, or directly jamming a vehicle with VR. Each vehicle has a Handling modifier that applies to this test, along with other situational modifiers (see Bots, Synthmorphs, and Vehicles, p. 195).
+
+    Sample Fields: Aircraft, Anthroform (walkers), ExoticVehicle, Groundcraft (wheeled or tracked), Spacecraft, Watercraft
+
+    Specializations: As appropriate to the field
+  aptitude: REF
+  category: Active
+- name: Spray Weapons
+  description: |
+    The Spray Weapons skill covers the use and maintenance of cone-effect ranged weapons.
+
+    A player uses their Spray Weapons skill whenever they are attacking with a spray weapon in ranged combat.
+
+    Specializations: Buzzer, Freezer, Shard, Shredder, Torch
+  aptitude: COO
+  category: Active
+- name: Swimming
+  description: |
+    Swimming is the art of moving and not drowning within fluids. It includes floating, surface swimming, snorkeling, diving, and related equipment use.
+
+    Use Swimming whenever you need to move and survive in water or another liquid environment. Swimming in a non-threatening environment can be handled as a Simple Success Test. Swimming over a long distance could be handled as a Task Action. Diving off a cliff into a lake, preventing yourself from being swept away in a raging river current, or making sure you've set a proper gas mix for a deep-sea dive, among other things, requires a Success Test.
+
+    Specializations: Diving, Freestyle, Underwater Diving
+  aptitude: SOM
+  category: Active
+- name: Throwing Weapons
+  description: |
+    Throwing Weapons skill covers the use and maintenance of standard throwing weapons, like grenades.
+
+    Use Throwing Weapons skill whenever you are attacking with a throwing weapon in ranged combat.
+
+    Specializations: Grenades, Knives, Rocks
+  aptitude: COO
+  category: Active
+- name: Unarmed Combat
+  description: |
+    Unarmed Combat is your ability to attack and defend without using weapons.
+
+    Use Unarmed Combat whenever you want to attack someone with your fists, feet, elbows, knees, or other body parts in melee combat.
+    
+    Specializations: Implant Weaponry, Kick, Punch, Subdual
+  aptitude: SOM
+  category: Active
