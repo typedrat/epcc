@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module EP.Data.Trait ( egoTraits, morphTraits ) where
 
 import EP.Schema.Trait

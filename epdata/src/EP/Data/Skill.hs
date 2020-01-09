@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module EP.Data.Skill ( skills ) where
 
 import Control.Arrow              ( (&&&) )

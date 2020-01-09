@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module EP.Schema.Predicate ( Predicate(..), _HasTraitNamed, _Not ) where
 
 import Control.Lens.TH

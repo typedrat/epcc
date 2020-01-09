@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module EP.Schema.Source ( Book(..), Source(..), HasSource(..) ) where
 
 import Control.Lens.TH

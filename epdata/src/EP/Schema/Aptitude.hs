@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module EP.Schema.Aptitude ( Aptitude(..), AptitudeSet, aptitude ) where
 
 import Control.Lens               hiding ( (.=) )

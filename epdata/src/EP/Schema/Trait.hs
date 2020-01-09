@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module EP.Schema.Trait 
     ( TraitCategory(..)
     , TraitData(..), HasTraitData(..)

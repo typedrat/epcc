@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module EP.Schema.Skill 
     ( SkillType(..), SkillCategory(..)
     , SkillData(..), HasSkillData(..)

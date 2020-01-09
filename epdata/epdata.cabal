@@ -52,5 +52,6 @@ library
                      , RankNTypes
                      , ScopedTypeVariables
                      , StandaloneDeriving
+                     , TemplateHaskell
                      , TypeApplications
                      , TypeFamilies
