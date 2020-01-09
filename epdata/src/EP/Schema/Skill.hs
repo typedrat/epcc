@@ -2,24 +2,26 @@
 module EP.Schema.Skill 
     ( SkillType(..), SkillCategory(..)
     , SkillData(..), HasSkillData(..)
-    , Skill(..), AnySkill(..)
+    , Skill(..), AnySkill(..), skills
     , SkillRanks(..), HasSkillRanks(..), FieldSkillRanks
     ) where
 
-import Control.Lens.At
-import Control.Lens.Combinators  ( view, coerced )
-import Control.Lens.Lens
-import Control.Lens.TH
+import Control.Arrow
+import Control.Lens               hiding ( (.=) )
 import Data.Aeson.Types
+import Data.FileEmbed
 import Data.Functor.Contravariant
-import qualified Data.Text       as T
-import qualified Data.Map.Strict as M
-import GHC.Generics              ( Generic )
+import qualified Data.Text        as T
+import qualified Data.Map.Strict  as M
+import qualified Data.Yaml        as YAML
+import GHC.Generics               ( Generic )
 
 import EP.Describable
 import EP.Schema.Aptitude
+import EP.Utils
 
 data SkillType = Normal | Field
+               deriving (Show, Eq)
 
 data SkillCategory = Active | Knowledge
                    deriving (Show, Eq, Ord, Generic)
@@ -41,10 +43,12 @@ makeClassy ''SkillData
 data Skill (t :: SkillType) where
     NormalSkill :: SkillData -> Skill 'Normal
     FieldSkill :: SkillData -> Skill 'Field
+    SpecificFieldSkill :: Skill 'Field -> T.Text -> Skill 'Normal
 
 skillType :: Skill t -> SkillType
-skillType NormalSkill{} = Normal
-skillType FieldSkill{} = Field
+skillType NormalSkill{}        = Normal
+skillType SpecificFieldSkill{} = Normal
+skillType FieldSkill{}         = Field
 
 deriving instance Show (Skill t)
 deriving instance Eq (Skill t)
@@ -54,12 +58,14 @@ instance HasSkillData (Skill t) where
     skillData = lens get set
         where
             get :: Skill t -> SkillData
-            get (NormalSkill sd) = sd
-            get (FieldSkill sd)  = sd
+            get (NormalSkill sd)                       = sd
+            get (FieldSkill sd)                        = sd
+            get (SpecificFieldSkill (FieldSkill sd) _) = sd
 
             set :: Skill t -> SkillData -> Skill t
-            set NormalSkill{} sd = NormalSkill sd
-            set FieldSkill{}  sd = FieldSkill sd
+            set NormalSkill{}                sd = NormalSkill sd
+            set FieldSkill{}                 sd = FieldSkill sd
+            set (SpecificFieldSkill _ field) sd = SpecificFieldSkill (FieldSkill sd) field
     {-# INLINE skillData #-}
 
 instance Describable (Skill t) where
@@ -83,9 +89,9 @@ skillToJSONHelper getType skill = concat [reqs, def', field]
             | not def   = ["defaultable" .= False]
             | otherwise = []
 
-        SkillData { _sdName = name
-                  , _sdAptitude = apt
-                  , _sdCategory = cat
+        SkillData { _sdName        = name
+                  , _sdAptitude    = apt
+                  , _sdCategory    = cat
                   , _sdDescription = desc
                   , _sdDefaultable = def
                   } = view skillData skill
@@ -104,31 +110,40 @@ data AnySkill where
     AnySkill :: forall t. Skill t -> AnySkill
 
 anySkillType :: AnySkill -> SkillType
-anySkillType (AnySkill sk)  = skillType sk
+anySkillType (AnySkill sk) = skillType sk
 
 deriving instance Show AnySkill
 
 instance Eq AnySkill where
-    (AnySkill x@NormalSkill{}) == (AnySkill y@NormalSkill{}) = x == y
-    (AnySkill x@FieldSkill{})  == (AnySkill y@FieldSkill{})  = x == y
-    _                          == _                          = False
+    (AnySkill x@NormalSkill{})         == (AnySkill y@NormalSkill{})         = x == y
+    (AnySkill x@FieldSkill{})          == (AnySkill y@FieldSkill{})          = x == y
+    (AnySkill x@SpecificFieldSkill{})  == (AnySkill y@SpecificFieldSkill{})  = x == y
+    _                                  == _                                  = False
 
 instance Ord AnySkill where
-    compare (AnySkill x@NormalSkill{}) (AnySkill y@NormalSkill{}) = compare x y
-    compare (AnySkill x@FieldSkill{})  (AnySkill y@FieldSkill{})  = compare x y
-    compare (AnySkill NormalSkill{})   (AnySkill FieldSkill{})    = LT
-    compare (AnySkill FieldSkill{})    (AnySkill NormalSkill{})   = GT
+    compare (AnySkill x@NormalSkill{})         (AnySkill y@NormalSkill{})         = compare x y
+    compare (AnySkill x@FieldSkill{})          (AnySkill y@FieldSkill{})          = compare x y
+    compare (AnySkill x@SpecificFieldSkill{})  (AnySkill y@SpecificFieldSkill{})  = compare x y
+    compare (AnySkill NormalSkill{})           (AnySkill FieldSkill{})            = LT
+    compare (AnySkill NormalSkill{})           (AnySkill SpecificFieldSkill{})    = LT
+    compare (AnySkill FieldSkill{})            (AnySkill NormalSkill{})           = GT
+    compare (AnySkill FieldSkill{})            (AnySkill SpecificFieldSkill{})    = LT
+    compare (AnySkill SpecificFieldSkill{})    (AnySkill NormalSkill{})           = GT
+    compare (AnySkill SpecificFieldSkill{})    (AnySkill FieldSkill{})            = GT
 
 instance HasSkillData AnySkill where
     skillData = lens get set
         where
             get :: AnySkill -> SkillData
-            get (AnySkill (NormalSkill sd)) = sd
-            get (AnySkill (FieldSkill sd))  = sd
+            get (AnySkill (NormalSkill sd))                       = sd
+            get (AnySkill (FieldSkill sd))                        = sd
+            get (AnySkill (SpecificFieldSkill (FieldSkill sd) _)) = sd
 
             set :: AnySkill -> SkillData -> AnySkill
-            set (AnySkill NormalSkill{}) sd = AnySkill (NormalSkill sd)
-            set (AnySkill FieldSkill{})  sd = AnySkill (FieldSkill sd)
+            set (AnySkill NormalSkill{}) sd                = AnySkill (NormalSkill sd)
+            set (AnySkill FieldSkill{})  sd                = AnySkill (FieldSkill sd)
+            set (AnySkill (SpecificFieldSkill _ field)) sd = AnySkill (SpecificFieldSkill (FieldSkill sd) field)
+
     {-# INLINE skillData #-}
 
 instance Describable AnySkill where
@@ -150,6 +165,12 @@ instance FromJSON AnySkill where
 
         return skill
 
+instance FromJSONKey AnySkill where
+    fromJSONKey = FromJSONKeyTextParser $ \key -> do
+        case M.lookup key skills of
+            Just match -> pure match
+            Nothing    -> fail ('\'' : T.unpack key ++ "' is not a known/valid skill.")
+
 instance ToJSON AnySkill where
     toJSON = object . skillToJSONHelper anySkillType
     toEncoding = pairs . mconcat . skillToJSONHelper anySkillType
@@ -157,6 +178,15 @@ instance ToJSON AnySkill where
 instance ToJSONKey AnySkill where
     toJSONKey = contramap getName toJSONKey
     toJSONKeyList = contramap (fmap getName) toJSONKeyList
+
+--
+
+skills :: M.Map T.Text AnySkill
+skills = M.fromList 
+       . fmap (getName &&& id)
+       . handleYAMLParseErrors
+       . YAML.decodeEither' @[AnySkill]
+       $ $(embedFile =<< makeRelativeToProject "data/skills.yml")
 
 --
 
@@ -185,7 +215,7 @@ instance ToJSON SkillRanks where
 makeClassy ''SkillRanks
 
 newtype FieldSkillRanks = FieldSkillRanks { unFieldSkillRanks :: M.Map T.Text SkillRanks }
-                        deriving (Show, Eq)
+                        deriving (Show, Eq, FromJSON, ToJSON)
 
 instance Semigroup FieldSkillRanks where
     (FieldSkillRanks r1) <> (FieldSkillRanks r2) = FieldSkillRanks (M.unionWith (<>) r1 r2)

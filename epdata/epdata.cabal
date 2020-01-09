@@ -13,28 +13,42 @@ author:              Alexis Williams
 maintainer:          alexis@typedr.at
 -- copyright:
 category:            Game
-extra-source-files:  CHANGELOG.md
+extra-source-files:  CHANGELOG.md data/*.yml
 
 library
   exposed-modules: EP.Describable
                  , EP.Schema.Aptitude
+                 , EP.Schema.Modifier
+                 , EP.Schema.Predicate
                  , EP.Schema.Skill
+                 , EP.Schema.Source
+                 , EP.Schema.Trait
+                 , EP.Utils
   -- other-modules:
   -- other-extensions:
   build-depends:       base ^>=4.13.0.0
                      , text
+                     , bytestring
                      , containers
                      , lens
                      , aeson
                      , yaml
+                     , file-embed
+                     , template-haskell
+                     , th-lift-instances
   hs-source-dirs:      src
   default-language:    Haskell2010
-  default-extensions:  DataKinds
+  default-extensions:  AllowAmbiguousTypes
+                     , DataKinds
                      , DeriveGeneric
+                     , DeriveLift
+                     , FlexibleInstances
                      , GADTs
+                     , GeneralizedNewtypeDeriving
                      , OverloadedStrings
                      , PolyKinds
                      , RankNTypes
+                     , ScopedTypeVariables
                      , StandaloneDeriving
                      , TypeApplications
                      , TypeFamilies
