@@ -51,13 +51,13 @@ instance ToJSON TraitCategory where
 --
 
 data TraitData = TraitData
-               { _tdName :: T.Text
-               , _tdSource :: Source
-               , _tdDescription :: T.Text
-               , _tdCost :: Int
-               , _tdCategory :: TraitCategory
-               , _tdModifiers :: [Modifier]
-               , _tdRequirements :: [Predicate]
+               { _traitName :: T.Text
+               , _traitSource :: Source
+               , _traitDescription :: T.Text
+               , _traitCost :: Int
+               , _traitCategory :: TraitCategory
+               , _traitModifiers :: [Modifier]
+               , _traitRequirements :: [Predicate]
                }
                deriving (Show, Eq, Ord, Generic, Lift)
 
@@ -74,7 +74,7 @@ parseTraitData o = TraitData
 makeClassy ''TraitData
 
 instance HasSource TraitData where
-    source = tdSource
+    source = traitSource
 
 --
 
@@ -88,21 +88,21 @@ instance HasTraitData EgoTrait where
     traitData = coerced
 
 instance HasSource EgoTrait where
-    source = tdSource
+    source = traitSource
 
 instance HasTraitData MorphTrait where
     traitData = coerced
 
 instance HasSource MorphTrait where
-    source = tdSource
+    source = traitSource
 
 instance Describable EgoTrait where
-    getName = view tdName
-    getDescription = view tdDescription
+    getName = view traitName
+    getDescription = view traitDescription
 
 instance Describable MorphTrait where
-    getName = view tdName
-    getDescription = view tdDescription
+    getName = view traitName
+    getDescription = view traitDescription
 
 instance FromJSON EgoTrait where
     parseJSON = withObject "ego trait" $ \o -> do
@@ -111,7 +111,7 @@ instance FromJSON EgoTrait where
 
         case ty of
             Ego   -> pure (EgoTrait td)
-            Morph -> fail ('\'' : T.unpack (view tdName td) ++ "' is not an ego trait!")
+            Morph -> fail ('\'' : T.unpack (view traitName td) ++ "' is not an ego trait!")
 
 instance FromJSON MorphTrait where
     parseJSON = withObject "morph trait" $ \o -> do
@@ -120,7 +120,7 @@ instance FromJSON MorphTrait where
 
         case ty of
             Morph -> pure (MorphTrait td)
-            Ego   -> fail ('\'' : T.unpack (view tdName td) ++ "' is not a morph trait!")
+            Ego   -> fail ('\'' : T.unpack (view traitName td) ++ "' is not a morph trait!")
 
 traitToJSONHelper :: (HasTraitData t, KeyValue kv) => TraitType -> t -> [kv]
 traitToJSONHelper ty trait = concat [required, modsL, reqsL]
@@ -139,13 +139,13 @@ traitToJSONHelper ty trait = concat [required, modsL, reqsL]
             | not (null reqs) = [ "requirements" .= reqs ] 
             | otherwise       = []
 
-        name = trait ^. tdName
-        src  = trait ^. tdSource
-        desc = trait ^. tdDescription
-        cost = trait ^. tdCost
-        cat  = trait ^. tdCategory
-        mods = trait ^. tdModifiers
-        reqs = trait ^. tdRequirements
+        name = trait ^. traitName
+        src  = trait ^. traitSource
+        desc = trait ^. traitDescription
+        cost = trait ^. traitCost
+        cat  = trait ^. traitCategory
+        mods = trait ^. traitModifiers
+        reqs = trait ^. traitRequirements
 
 instance ToJSON EgoTrait where
     toJSON = object . traitToJSONHelper Ego

@@ -26,11 +26,11 @@ instance FromJSON SkillCategory
 instance ToJSON SkillCategory
 
 data SkillData = SkillData
-               { _sdName :: T.Text
-               , _sdAptitude :: Aptitude
-               , _sdCategory :: SkillCategory
-               , _sdDescription :: T.Text
-               , _sdDefaultable :: Bool
+               { _skillName :: T.Text
+               , _skillAptitude :: Aptitude
+               , _skillCategory :: SkillCategory
+               , _skillDescription :: T.Text
+               , _skillDefaultable :: Bool
                }
                deriving (Show, Eq, Ord, Lift)
 
@@ -66,8 +66,8 @@ instance HasSkillData (Skill t) where
     {-# INLINE skillData #-}
 
 instance Describable (Skill t) where
-    getName = view sdName
-    getDescription = view sdDescription
+    getName = view skillName
+    getDescription = view skillDescription
 
 skillToJSONHelper :: (HasSkillData s, KeyValue kv) => (s -> SkillType) -> s -> [kv]
 skillToJSONHelper getType skill = concat [reqs, def', field]
@@ -86,11 +86,11 @@ skillToJSONHelper getType skill = concat [reqs, def', field]
             | not def   = ["defaultable" .= False]
             | otherwise = []
 
-        SkillData { _sdName        = name
-                  , _sdAptitude    = apt
-                  , _sdCategory    = cat
-                  , _sdDescription = desc
-                  , _sdDefaultable = def
+        SkillData { _skillName        = name
+                  , _skillAptitude    = apt
+                  , _skillCategory    = cat
+                  , _skillDescription = desc
+                  , _skillDefaultable = def
                   } = view skillData skill
 
 instance ToJSON (Skill t) where
@@ -145,8 +145,8 @@ instance HasSkillData AnySkill where
     {-# INLINE skillData #-}
 
 instance Describable AnySkill where
-    getName = view sdName
-    getDescription = view sdDescription
+    getName = view skillName
+    getDescription = view skillDescription
 
 instance FromJSON AnySkill where
     parseJSON = withObject "Skill" $ \o -> do
