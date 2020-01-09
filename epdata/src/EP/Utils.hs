@@ -1,7 +1,9 @@
-module EP.Utils ( handleYAMLParseErrors ) where
+module EP.Utils ( embedYAML, makeRelativeToProject ) where
 
+import Data.Aeson.Types
+import Data.FileEmbed
 import qualified Data.Yaml as YAML
+import Language.Haskell.TH.Syntax
 
-handleYAMLParseErrors :: Either YAML.ParseException a -> a
-handleYAMLParseErrors (Right skills) = skills
-handleYAMLParseErrors (Left err)     = error (YAML.prettyPrintParseException err)
+embedYAML :: forall a. (Lift a, FromJSON a) => FilePath -> Q Exp
+embedYAML path = lift =<< YAML.decodeFileThrow @_ @a path

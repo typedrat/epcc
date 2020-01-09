@@ -1,17 +1,16 @@
 {-# LANGUAGE TemplateHaskell #-}
-module EP.Schema.Aptitude ( Aptitude(..), AptitudeSet(..), aptitude ) where
+module EP.Schema.Aptitude ( Aptitude(..), AptitudeSet, aptitude ) where
 
-import Control.Applicative
-import Control.Lens            hiding ( (.=) )
+import Control.Lens               hiding ( (.=) )
 import Data.Aeson.Types
-import qualified Data.Text      as T
-import GHC.Generics             ( Generic )
-import Text.Read
+import Data.Text                  ()
+import GHC.Generics               ( Generic )
+import Language.Haskell.TH.Syntax ( Lift )
 
 import EP.Describable
 
 data Aptitude = COG | COO | INT | REF | SAV | SOM | WIL
-              deriving (Show, Read, Eq, Ord, Generic, Enum)
+              deriving (Show, Read, Eq, Ord, Generic, Enum, Lift)
 
 instance Describable Aptitude where
     getName COG = "Cognition"

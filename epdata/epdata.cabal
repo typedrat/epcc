@@ -16,16 +16,18 @@ category:            Game
 extra-source-files:  CHANGELOG.md data/*.yml
 
 library
-  exposed-modules: EP.Describable
-                 , EP.Schema.Aptitude
-                 , EP.Schema.Modifier
-                 , EP.Schema.Predicate
-                 , EP.Schema.Skill
-                 , EP.Schema.Source
-                 , EP.Schema.Trait
-                 , EP.Utils
-  -- other-modules:
-  -- other-extensions:
+  exposed-modules:     EP.Data
+                     , EP.Describable
+                     , EP.Schema
+  other-modules:       EP.Data.Trait
+                     , EP.Data.Skill
+                     , EP.Schema.Aptitude
+                     , EP.Schema.Modifier
+                     , EP.Schema.Predicate
+                     , EP.Schema.Skill
+                     , EP.Schema.Source
+                     , EP.Schema.Trait
+                     , EP.Utils
   build-depends:       base ^>=4.13.0.0
                      , text
                      , bytestring

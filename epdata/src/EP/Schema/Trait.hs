@@ -3,22 +3,19 @@ module EP.Schema.Trait
     ( TraitCategory(..)
     , TraitData(..), HasTraitData(..)
     , EgoTrait, MorphTrait
-    , egoTraits, morphTraits
     ) where
 
-import Control.Lens        hiding ( (.=) )
+import Control.Lens               hiding ( (.=) )
 import Data.Aeson.Types
-import Data.Char           ( toLower )
-import Data.FileEmbed
-import qualified Data.Text as T
-import qualified Data.Yaml as YAML
-import GHC.Generics        ( Generic )
+import Data.Char                  ( toLower )
+import qualified Data.Text        as T
+import GHC.Generics               ( Generic )
+import Language.Haskell.TH.Syntax ( Lift )
 
 import EP.Describable
 import EP.Schema.Modifier
 import EP.Schema.Predicate
 import EP.Schema.Source
-import EP.Utils
 
 --
 
@@ -38,7 +35,7 @@ instance ToJSON TraitType where
 --
 
 data TraitCategory = PositiveTrait | NegativeTrait
-                   deriving (Show, Eq, Ord, Generic)
+                   deriving (Show, Eq, Ord, Generic, Lift)
 
 traitCategoryOptions :: Options
 traitCategoryOptions = defaultOptions { constructorTagModifier = tagModifier }
@@ -63,7 +60,7 @@ data TraitData = TraitData
                , _tdModifiers :: [Modifier]
                , _tdRequirements :: [Predicate]
                }
-               deriving (Show, Eq, Ord, Generic)
+               deriving (Show, Eq, Ord, Generic, Lift)
 
 parseTraitData :: Object -> Parser TraitData
 parseTraitData o = TraitData 
@@ -83,10 +80,10 @@ instance HasSource TraitData where
 --
 
 newtype EgoTrait = EgoTrait TraitData
-                 deriving (Show, Eq, Ord)
+                 deriving (Show, Eq, Ord, Lift)
 
 newtype MorphTrait = MorphTrait TraitData
-                   deriving (Show, Eq, Ord)
+                   deriving (Show, Eq, Ord, Lift)
 
 instance HasTraitData EgoTrait where
     traitData = coerced
@@ -158,15 +155,3 @@ instance ToJSON EgoTrait where
 instance ToJSON MorphTrait where
     toJSON = object . traitToJSONHelper Morph
     toEncoding = pairs . mconcat . traitToJSONHelper Morph
-
---
-
-egoTraits :: [EgoTrait]
-egoTraits = handleYAMLParseErrors
-          . YAML.decodeEither'
-          $ $(embedFile =<< makeRelativeToProject "data/ego_traits.yml")
-
-morphTraits :: [MorphTrait]
-morphTraits = handleYAMLParseErrors
-            . YAML.decodeEither'
-            $ $(embedFile =<< makeRelativeToProject "data/morph_traits.yml")

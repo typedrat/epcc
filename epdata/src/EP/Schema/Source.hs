@@ -4,9 +4,10 @@ module EP.Schema.Source ( Book(..), Source(..), HasSource(..) ) where
 import Control.Lens.TH
 import Data.Aeson.Encoding
 import Data.Aeson.Types
-import Data.Char           ( toLower )
-import qualified Data.Text as T
-import GHC.Generics        ( Generic )
+import Data.Char                  ( toLower )
+import qualified Data.Text        as T
+import GHC.Generics               ( Generic )
+import Language.Haskell.TH.Syntax ( Lift )
 
 data Book = EclipsePhase
           | Transhuman
@@ -15,7 +16,7 @@ data Book = EclipsePhase
           | Gatecrashing
           | Panopticon
           | Firewall
-          deriving (Show, Eq, Ord, Generic)
+          deriving (Show, Eq, Ord, Generic, Lift)
 
 instance FromJSON Book where
     parseJSON = withText "Book" $ \t ->
@@ -27,6 +28,7 @@ instance FromJSON Book where
             "Gatecrashing"  -> pure Gatecrashing
             "Panopticon"    -> pure Panopticon
             "Firewall"      -> pure Firewall
+            book            -> fail ('\'' : book ++ "' is not a known Eclipse Phase sourcebook!")
 
 instance ToJSON Book where
     toJSON EclipsePhase = String "Eclipse Phase"
@@ -46,7 +48,7 @@ instance ToJSON Book where
     toEncoding Firewall     = text "Firewall"
 
 data Source = Source { _srcBook :: Book, _srcPage :: Word }
-            deriving (Show, Eq, Ord, Generic)
+            deriving (Show, Eq, Ord, Generic, Lift)
 
 sourceOptions :: Options
 sourceOptions = defaultOptions { fieldLabelModifier = fmap toLower . drop 4 }

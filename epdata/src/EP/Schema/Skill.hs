@@ -2,29 +2,26 @@
 module EP.Schema.Skill 
     ( SkillType(..), SkillCategory(..)
     , SkillData(..), HasSkillData(..)
-    , Skill(..), AnySkill(..), skills
+    , Skill(..), AnySkill(..)
     , SkillRanks(..), HasSkillRanks(..), FieldSkillRanks
     ) where
 
-import Control.Arrow
-import Control.Lens               hiding ( (.=) )
+import Control.Lens               hiding ( (.=), set )
 import Data.Aeson.Types
-import Data.FileEmbed
-import Data.Functor.Contravariant
 import qualified Data.Text        as T
 import qualified Data.Map.Strict  as M
-import qualified Data.Yaml        as YAML
 import GHC.Generics               ( Generic )
+import Instances.TH.Lift          ()
+import Language.Haskell.TH.Syntax ( Lift )
 
 import EP.Describable
 import EP.Schema.Aptitude
-import EP.Utils
 
 data SkillType = Normal | Field
-               deriving (Show, Eq)
+               deriving (Show, Eq, Lift)
 
 data SkillCategory = Active | Knowledge
-                   deriving (Show, Eq, Ord, Generic)
+                   deriving (Show, Eq, Ord, Generic, Lift)
 
 instance FromJSON SkillCategory
 instance ToJSON SkillCategory
@@ -36,7 +33,7 @@ data SkillData = SkillData
                , _sdDescription :: T.Text
                , _sdDefaultable :: Bool
                }
-               deriving (Show, Eq, Ord)
+               deriving (Show, Eq, Ord, Lift)
 
 makeClassy ''SkillData
 
@@ -53,6 +50,7 @@ skillType FieldSkill{}         = Field
 deriving instance Show (Skill t)
 deriving instance Eq (Skill t)
 deriving instance Ord (Skill t)
+deriving instance Lift (Skill t)
 
 instance HasSkillData (Skill t) where
     skillData = lens get set
@@ -113,6 +111,7 @@ anySkillType :: AnySkill -> SkillType
 anySkillType (AnySkill sk) = skillType sk
 
 deriving instance Show AnySkill
+deriving instance Lift AnySkill
 
 instance Eq AnySkill where
     (AnySkill x@NormalSkill{})         == (AnySkill y@NormalSkill{})         = x == y
@@ -165,12 +164,6 @@ instance FromJSON AnySkill where
 
         return skill
 
-instance FromJSONKey AnySkill where
-    fromJSONKey = FromJSONKeyTextParser $ \key -> do
-        case M.lookup key skills of
-            Just match -> pure match
-            Nothing    -> fail ('\'' : T.unpack key ++ "' is not a known/valid skill.")
-
 instance ToJSON AnySkill where
     toJSON = object . skillToJSONHelper anySkillType
     toEncoding = pairs . mconcat . skillToJSONHelper anySkillType
@@ -181,17 +174,8 @@ instance ToJSONKey AnySkill where
 
 --
 
-skills :: M.Map T.Text AnySkill
-skills = M.fromList 
-       . fmap (getName &&& id)
-       . handleYAMLParseErrors
-       . YAML.decodeEither' @[AnySkill]
-       $ $(embedFile =<< makeRelativeToProject "data/skills.yml")
-
---
-
 data SkillRanks = SkillRanks { _srRanks :: Word, _srSpecializations :: [T.Text] }
-                deriving (Show, Eq)
+                deriving (Show, Eq, Lift)
 
 instance Semigroup SkillRanks where
     (SkillRanks r1 s1) <> (SkillRanks r2 s2) = SkillRanks (r1 + r2) (s1 ++ s2)
@@ -215,7 +199,7 @@ instance ToJSON SkillRanks where
 makeClassy ''SkillRanks
 
 newtype FieldSkillRanks = FieldSkillRanks { unFieldSkillRanks :: M.Map T.Text SkillRanks }
-                        deriving (Show, Eq, FromJSON, ToJSON)
+                        deriving (Show, Eq, FromJSON, ToJSON, Lift)
 
 instance Semigroup FieldSkillRanks where
     (FieldSkillRanks r1) <> (FieldSkillRanks r2) = FieldSkillRanks (M.unionWith (<>) r1 r2)
